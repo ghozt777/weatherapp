@@ -1,2 +1,2 @@
 # weatherapp
- its a dumb weather app
+ its the best weather app youv'e ever seen
