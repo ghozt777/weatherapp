@@ -20,18 +20,19 @@ export const Handler = ({ setWeatherData , setUnits}) => {
          const response = await fetch(url);
          const data = await response.json();
          if(data.cod===200){
-         const date_sunrise = new Date(data.sys.sunrise * 1000);
-         const date_sunset = new Date(data.sys.sunset * 1000);
-     
-         await setWeatherData((oldData) => {
-           return {
-             ...oldData,
-             ...data,
-             str_sunrise: date_sunrise.toLocaleString("en-US"),
-             str_sunset: date_sunset.toLocaleString("en-US"),
-             apikStatus:'success'
-           };
-         });}
+            const date_sunrise = new Date(data.sys.sunrise * 1000);
+            const date_sunset = new Date(data.sys.sunset * 1000);
+        
+            await setWeatherData((oldData) => {
+              return {
+                ...oldData,
+                ...data,
+                str_sunrise: date_sunrise.toLocaleString("en-US"),
+                str_sunset: date_sunset.toLocaleString("en-US"),
+                apikStatus:'success'
+              };
+            });
+        }
          
          else if(data.cod===401){
            setWeatherData((oldData) =>{
@@ -42,19 +43,9 @@ export const Handler = ({ setWeatherData , setUnits}) => {
              }
            })
          }
-         
-         
-         
-         else{
-           setWeatherData((oldData) =>{
-             return{
-               ...oldData,
-               ...data
-             }
-           })
-         }
-          switch(unit)
-         {
+        
+          switch(unit){
+
            case 'metric':
              setUnits((oldData) => {
                return{
@@ -64,6 +55,7 @@ export const Handler = ({ setWeatherData , setUnits}) => {
                }
              })
              break
+
            case 'standard':
              setUnits((oldData) => {
                return{
@@ -73,6 +65,7 @@ export const Handler = ({ setWeatherData , setUnits}) => {
                }
              })
              break
+
            case 'imperial':
              setUnits((oldData) => {
                return{
@@ -82,10 +75,11 @@ export const Handler = ({ setWeatherData , setUnits}) => {
                }
              })
              break
+
              default:
                break
-     
-         }}
+          }
+        }
     })()
   }, [loginCredentials.location, loginCredentials.units,loginCredentials.apiKey,apiK,local,setUnits,setWeatherData,unit]);
 
