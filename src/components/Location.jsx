@@ -3,7 +3,6 @@ import { useState } from "react";
 import { AiFillSave } from 'react-icons/ai'
 export const Location = ({ setLogin }) => {
   const [locationdata, setLocationData] = useState("New York");
-  const [apik,setApiK] = useState('')
   return (
     <>
       <Box component='div' p='2rem'>
@@ -14,12 +13,6 @@ export const Location = ({ setLogin }) => {
         variant='outlined'
         onChange={(event) => setLocationData(event.target.value)}
         />
-      <TextField
-      id='outlined-basic'
-      label = 'enter your api key'
-      variant='outlined'
-      style={{width:'25rem'}}
-      onChange = {(event) =>setApiK(event.target.value) }/>
       <Button 
       size='large'
       endIcon={<AiFillSave/>}
@@ -28,15 +21,14 @@ export const Location = ({ setLogin }) => {
         onClick={() =>{
           setLogin((oldData) => {
             return { ...oldData, 
-              location: locationdata,
-              apiKey: apik 
+              location: locationdata
             };
           })
         }
       }
       >
         {" "}
-        update{" "}
+        get info{" "}
       </Button>
     </Box>
     </>
